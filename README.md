@@ -1,2 +1,3 @@
 # bootAlert
-Floating page push notifications with Bootstrap 3.
+## A Bootstrap 3 plugin
+Floating page push notifications with **Bootstrap 3**.

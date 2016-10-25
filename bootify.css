@@ -1,25 +1,25 @@
 /*!
- * bootfy CSS
+ * Bootify CSS
  * @author odahcam
  * @version 1.0.0
  **/
 
-.bootfy {
+.bootify {
     opacity: 0;
     filter: alpha(opacity=0);
 }
 
-.bootfy .glyphicon {
+.bootify .glyphicon {
     font-size: 20px;
     float: left;
     margin-right: 14px;
 }
 
-.bootfy p {
+.bootify p {
     display: table;
 }
 
-.container-bootfy {
+.container-bootify {
     position: fixed;
     width: 360px;
     max-width: 95%;
@@ -30,23 +30,23 @@
     bottom: initial;
 }
 
-.container-bootfy.top {
+.container-bootify.top {
     top: 20px;
 }
 
-.container-bootfy.bottom {
+.container-bootify.bottom {
     bottom: 20px;
 }
 
-.container-bootfy.right {
+.container-bootify.right {
     left: initial;
 }
 
-.container-bootfy.left {
+.container-bootify.left {
     right: initial;
 }
 
-.container-bootfy.center {
+.container-bootify.center {
     left: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);

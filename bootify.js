@@ -28,7 +28,7 @@
      * change the plugin's name
      * @type {string} pluginName
      */
-    var pluginName = 'bootfy';
+    var pluginName = 'bootify';
 
     /**
      * This is a real private method. A plugin instance has access to it
@@ -36,7 +36,7 @@
      * @param {int} timeout
      * @return {int} setTimeoutID The setTimeout ID.
      */
-    var bootfyHide = function($obj, timeout) {
+    var bootifyHide = function($obj, timeout) {
         return setTimeout(function() {
             $obj.animate({
                 opacity: 0,
@@ -88,8 +88,7 @@
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
             var putTo = position[0] == 'bottom' ? 'appendTo' : 'prependTo';
-                $obj = $('<div class="alert alert-dismissable alert-' + settings.type + ' boot-alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + settings.icon + '"></span><p>' + settings.text + '</p></div>')
-                    [putTo]('.' + containerClass + positionSelector);
+            $obj = $('<div class="alert alert-dismissable alert-' + settings.type + ' boot-alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + settings.icon + '"></span><p>' + settings.text + '</p></div>')[putTo]('.' + containerClass + positionSelector);
 
             // Exibe o .alert
             $obj.animate({
@@ -99,13 +98,13 @@
             // Se o .alert tem tempo de expiração
             if (settings.timeout !== false) {
                 var secondsTimeout = parseInt(settings.timeout * 1000),
-                    timer = bootfyHide($obj, secondsTimeout);
+                    timer = bootifyHide($obj, secondsTimeout);
 
                 // Pausa o timeout baseado no hover
                 $obj.hover(
                     clearTimeout.call(this, timer),
                     function() {
-                        timer = bootfyHide($obj, secondsTimeout);
+                        timer = bootifyHide($obj, secondsTimeout);
                     });
             }
         }

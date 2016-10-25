@@ -1,0 +1,5 @@
+/*!
+ * BootAlert CSS
+ * @author odahcam
+ * @version 1.0.0
+ **/.bootAlert{opacity:0;filter:alpha(opacity=0)}.bootAlert .glyphicon{font-size:20px;float:left;margin-right:14px}.bootAlert p{display:table}.container-bootAlert{position:fixed;width:360px;max-width:90%;z-index:2060;left:20px;right:20px;top:initial;bottom:initial}.container-bootAlert.top-right{top:20px;left:initial}.container-bootAlert.top-left{top:20px;right:initial}.container-bootAlert.top-center{top:20px;left:50%;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%)}.container-bootAlert.bottom-right{bottom:20px;left:initial}.container-bootAlert.bottom-left{bottom:20px;right:initial}.container-bootAlert.bottom-center{bottom:20px;left:50%;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%)}

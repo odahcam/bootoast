@@ -48,7 +48,7 @@
     /**
      * The plugin method.
      */
-    $.fn[pluginName] = function(options) {
+    window[pluginName] = function(options) {
 
         if (options !== undefined) {
 
@@ -115,7 +115,7 @@
     /**
      * Default options
      */
-    $.fn[pluginName].defaults = {
+    window[pluginName].defaults = {
         message: 'Helo!', // String: HTML
         type: 'info', // String: ['warning', 'success', 'danger', 'info']
         position: 'bottom-center', // String: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
@@ -123,14 +123,14 @@
         timeout: false
     };
 
-    $.fn[pluginName].icons = {
+    window[pluginName].icons = {
         warning: 'exclamation-sign',
         success: 'ok-sign',
         danger: 'remove-sign',
         info: 'info-sign'
     };
 
-    $.fn[pluginName].positionSinonym = {
+    window[pluginName].positionSinonym = {
         bottom: 'bottom-center',
         leftBottom: 'bottom-left',
         rightBottom: 'bottom-right',
@@ -139,7 +139,7 @@
         leftTop: 'top-left'
     };
 
-    $.fn[pluginName].positionSupported = [
+    window[pluginName].positionSupported = [
         'top-left',
         'top-center',
         'top-right',

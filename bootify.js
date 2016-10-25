@@ -70,7 +70,7 @@
             }
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
-            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' ' + pluginName + '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[putTo]('.' + containerClass + positionSelector);
+            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' ' + pluginName + '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[this.putTo]('.' + containerClass + positionSelector);
 
             // Exibe o .alert
             this.$el.animate({
@@ -105,12 +105,18 @@
             timeout: false,
             animationDuration: 300 // Int: animation duration in miliseconds
         },
+        /*
+         * Default icons
+         */
         icons: {
             warning: 'exclamation-sign',
             success: 'ok-sign',
             danger: 'remove-sign',
             info: 'info-sign'
         },
+        /*
+         * Position Sinonymus
+         */
         positionSinonym: {
             bottom: 'bottom-center',
             leftBottom: 'bottom-left',
@@ -119,6 +125,9 @@
             rightTop: 'top-right',
             leftTop: 'top-left'
         },
+        /*
+         * Position Supported
+         */
         positionSupported: [
             'top-left',
             'top-center',
@@ -136,7 +145,9 @@
             return setTimeout(function() {
                 plugin.$el.animate({
                     opacity: 0,
-                }, plugin.settings.animationDuration, $.remove.bind(plugin.$el));
+                }, plugin.settings.animationDuration, function() {
+                    plugin.$el.remove();
+                });
             }, timeout);
         }
     });

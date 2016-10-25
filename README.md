@@ -1,3 +1,3 @@
-# bootAlert
-## A Bootstrap 3 plugin
+# Bootfy
+## A Bootstrap 3 Notification Plugin
 Floating page push notifications with **Bootstrap 3**.

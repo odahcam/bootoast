@@ -28,7 +28,7 @@
      * change the plugin's name
      * @type {string} pluginName
      */
-    var pluginName = 'bootAlert';
+    var pluginName = 'bootfy';
 
     /**
      * This is a real private method. A plugin instance has access to it
@@ -36,7 +36,7 @@
      * @param {int} timeout
      * @return {int} setTimeoutID The setTimeout ID.
      */
-    var bootAlertHide = function($obj, timeout) {
+    var bootfyHide = function($obj, timeout) {
         return setTimeout(function() {
             $obj.animate({
                 opacity: 0,
@@ -99,13 +99,13 @@
             // Se o .alert tem tempo de expiração
             if (settings.timeout !== false) {
                 var secondsTimeout = parseInt(settings.timeout * 1000),
-                    timer = bootAlertHide($obj, secondsTimeout);
+                    timer = bootfyHide($obj, secondsTimeout);
 
                 // Pausa o timeout baseado no hover
                 $obj.hover(
                     clearTimeout.call(this, timer),
                     function() {
-                        timer = bootAlertHide($obj, secondsTimeout);
+                        timer = bootfyHide($obj, secondsTimeout);
                     });
             }
         }

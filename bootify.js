@@ -1,20 +1,9 @@
 /**
  * @author odahcam
  * @version 1.0.0
- */
-!(function($, window, document, undefined) {
-
-    /*
-     * undefined is used here as the undefined global variable in ECMAScript 3 is
-     * mutable (ie. it can be changed by someone else). undefined isn't really being
-     * passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-     * can no longer be modified.
-     *
-     * window and document are passed through as local variables rather than global
-     * as this (slightly) quickens the resolution process and can be more efficiently
-     * minified (especially when both are regularly referenced in your plugin).
-     *
-     */
+ **/
+;
+(function($, window, document, undefined) {
 
     "use strict";
 
@@ -24,54 +13,41 @@
     }
 
     /**
-     * Store the plugin name in a variable. It helps you if later decide to
-     * change the plugin's name
+     * Store the plugin name in a variable. It helps you if later decide to change the plugin's name
      * @type {string} pluginName
-     */
+     **/
     var pluginName = 'bootify';
 
-    /**
-     * This is a real private method. A plugin instance has access to it
-     * @param {Object} $obj
-     * @param {int} timeout
-     * @return {int} setTimeoutID The setTimeout ID.
+    /*
+     * The plugin constructor.
      */
-    var bootifyHide = function($obj, timeout) {
-        return setTimeout(function() {
-            $obj.animate({
-                opacity: 0,
-            }, 300, $obj.remove);
-        }, timeout);
-    }
-
-
-    /**
-     * The plugin method.
-     */
-    window[pluginName] = function(options) {
+    function Plugin(options) {
 
         if (options !== undefined) {
 
             // Variables default
-            var settings = this.defaults,
-                containerClass = 'container-' + pluginName;
+            this.settings = $.extend({}, this.defaults);
+            var containerClass = 'container-' + pluginName;
 
             // Checa se foi passada uma mensagem flat ou se há opções.
             if (typeof options !== 'string') {
-                $.extend(settings, options);
+                $.extend(this.settings, options);
             } else {
-                settings.text = options;
+                this.settings.text = options;
             }
 
-            var positionSet = '';
+            var positionSet = this.settings.position;
 
             // Define uma posição suportada para o .alert
-            if (this.positionSupported[settings.position] !== undefined) {
-                positionSet = settings.position;
-            } else
-            // Tenta encontrar um sinônimo
-            if (this.positionSinonym[$.camelCase(settings.position)] !== undefined) {
-                positionSet = this.positionSinonym[$.camelCase(settings.position)] || 'bottom-center';
+            if (this.positionSupported[this.settings.position] !== undefined) {
+                positionSet = this.settings.position;
+            } else {
+                // Tenta encontrar um sinônimo
+                var positionCamel = $.camelCase(this.settings.position);
+
+                if (this.positionSinonym[positionCamel] !== undefined) {
+                    positionSet = this.positionSinonym[positionCamel] || 'bottom-center';
+                }
             }
 
             var position = positionSet.split('-'),
@@ -79,7 +55,7 @@
                 positionClass = position.join(' ');
 
             // Define o .glyphicon com base no .alert-<type>
-            settings.icon = settings.icon || this.icons[settings.type];
+            this.settings.icon = this.settings.icon || this.icons[this.settings.type];
 
             // Checa se já tem container, se não cria um.
             if ($('body > .' + containerClass + positionSelector).length === 0) {
@@ -88,62 +64,81 @@
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
             var putTo = position[0] == 'bottom' ? 'appendTo' : 'prependTo';
-            $obj = $('<div class="alert alert-dismissable alert-' + settings.type + ' boot-alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + settings.icon + '"></span><p>' + settings.text + '</p></div>')[putTo]('.' + containerClass + positionSelector);
+
+            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' boot-alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><p>' + this.settings.text + '</p></div>')[putTo]('.' + containerClass + positionSelector);
 
             // Exibe o .alert
-            $obj.animate({
-                opacity: '1',
-            }, 300);
+            this.$el.animate({
+                opacity: 1,
+            }, this.settings.animationDuration);
 
             // Se o .alert tem tempo de expiração
-            if (settings.timeout !== false) {
-                var secondsTimeout = parseInt(settings.timeout * 1000),
-                    timer = bootifyHide($obj, secondsTimeout);
+            if (this.settings.timeout !== false) {
+                var secondsTimeout = parseInt(this.settings.timeout * 1000),
+                    timer = this.hide(secondsTimeout),
+                    plugin = this;
 
                 // Pausa o timeout baseado no hover
-                $obj.hover(
-                    clearTimeout.call(this, timer),
+                this.$el.hover(
+                    clearTimeout.bind(window, timer),
                     function() {
-                        timer = bootifyHide($obj, secondsTimeout);
+                        timer = plugin.hide(secondsTimeout);
                     });
             }
         }
     };
 
+    $.extend(Plugin.prototype, {
+        /*
+         * Default options
+         */
+        defaults: {
+            message: 'Helo!', // String: HTML
+            type: 'info', // String: ['warning', 'success', 'danger', 'info']
+            position: 'bottom-center', // String: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
+            icon: undefined, // String: name
+            timeout: false,
+            animationDuration: 300 // Int: animation duration in miliseconds
+        },
+        icons: {
+            warning: 'exclamation-sign',
+            success: 'ok-sign',
+            danger: 'remove-sign',
+            info: 'info-sign'
+        },
+        positionSinonym: {
+            bottom: 'bottom-center',
+            leftBottom: 'bottom-left',
+            rightBottom: 'bottom-right',
+            top: 'top-center',
+            rightTop: 'top-right',
+            leftTop: 'top-left'
+        },
+        positionSupported: [
+            'top-left',
+            'top-center',
+            'top-right',
+            'bottom-left',
+            'bottom-right'
+        ],
+        /**
+         * @type {function} hide
+         * @param {int} timeout
+         * @return {int} setTimeoutID The setTimeout ID.
+         **/
+        hide: function(timeout) {
+            var plugin = this;
+            return setTimeout(function() {
+                plugin.$el.animate({
+                    opacity: 0,
+                }, plugin.settings.animationDuration, $.remove.bind(plugin.$el));
+            }, timeout);
+        }
+    });
 
-    /**
-     * Default options
-     */
-    window[pluginName].defaults = {
-        message: 'Helo!', // String: HTML
-        type: 'info', // String: ['warning', 'success', 'danger', 'info']
-        position: 'bottom-center', // String: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
-        icon: undefined, // String: name
-        timeout: false
+    window[pluginName] = function(options) {
+        new Plugin(options);
+        return;
     };
-
-    window[pluginName].icons = {
-        warning: 'exclamation-sign',
-        success: 'ok-sign',
-        danger: 'remove-sign',
-        info: 'info-sign'
-    };
-
-    window[pluginName].positionSinonym = {
-        bottom: 'bottom-center',
-        leftBottom: 'bottom-left',
-        rightBottom: 'bottom-right',
-        top: 'top-center',
-        rightTop: 'top-right',
-        leftTop: 'top-left'
-    };
-
-    window[pluginName].positionSupported = [
-        'top-left',
-        'top-center',
-        'top-right',
-        'bottom-left',
-        'bottom-right'
-    ];
 
 })(window.jQuery || false, window, document);

@@ -9,19 +9,31 @@
     filter: alpha(opacity=0);
 }
 
-.bootify .glyphicon {
-    font-size: 20px;
+.bootify>.glyphicon {
     float: left;
+    font-size: 20px;
     margin-right: 14px;
 }
 
-.bootify p {
+.bootify>.container-alert {
+    display: inline-block;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.bootify>* {
+    vertical-align: middle;
+}
+
+.bootify>.container-alert>.content {
     display: table;
+    width: 100%;
+    height: 100%;
 }
 
 .container-bootify {
     position: fixed;
-    width: 360px;
+    width: 390px;
     max-width: 95%;
     z-index: 2060;
     left: 20px;

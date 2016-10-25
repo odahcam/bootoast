@@ -1,4 +1,5 @@
 /**
+ * Plugin for displaying floating Bootstrap 3 `.alert`s.
  * @author odahcam
  * @version 1.0.0
  **/
@@ -27,14 +28,15 @@
 
             // Variables default
             this.settings = $.extend({}, this.defaults);
-            var containerClass = 'container-' + pluginName;
 
             // Checa se foi passada uma mensagem flat ou se há opções.
             if (typeof options !== 'string') {
                 $.extend(this.settings, options);
             } else {
-                this.settings.text = options;
+                this.settings.message = options;
             }
+
+            this.content = this.settings.content || this.settings.text || this.settings.message;
 
             var positionSet = this.settings.position;
 
@@ -54,8 +56,13 @@
                 positionSelector = '.' + position.join('.'),
                 positionClass = position.join(' ');
 
+            // Define se o novo .alert deve ser inserido por primeiro ou último no container.
+            this.putTo = position[0] == 'bottom' ? 'appendTo' : 'prependTo';
+
             // Define o .glyphicon com base no .alert-<type>
             this.settings.icon = this.settings.icon || this.icons[this.settings.type];
+
+            var containerClass = 'container-' + pluginName;
 
             // Checa se já tem container, se não cria um.
             if ($('body > .' + containerClass + positionSelector).length === 0) {
@@ -63,9 +70,7 @@
             }
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
-            var putTo = position[0] == 'bottom' ? 'appendTo' : 'prependTo';
-
-            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' boot-alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><p>' + this.settings.text + '</p></div>')[putTo]('.' + containerClass + positionSelector);
+            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' ' + pluginName + '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[putTo]('.' + containerClass + positionSelector);
 
             // Exibe o .alert
             this.$el.animate({

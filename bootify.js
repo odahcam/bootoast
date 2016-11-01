@@ -38,21 +38,19 @@
 
             this.content = this.settings.content || this.settings.text || this.settings.message;
 
-            var positionSet = this.settings.position;
-
             // Define uma posição suportada para o .alert
             if (this.positionSupported[this.settings.position] !== undefined) {
-                positionSet = this.settings.position;
+                this.settings.position = this.settings.position;
             } else {
                 // Tenta encontrar um sinônimo
                 var positionCamel = $.camelCase(this.settings.position);
 
                 if (this.positionSinonym[positionCamel] !== undefined) {
-                    positionSet = this.positionSinonym[positionCamel] || 'bottom-center';
+                    this.settings.position = this.positionSinonym[positionCamel] || 'bottom-center';
                 }
             }
 
-            var position = positionSet.split('-'),
+            var position = this.settings.position.split('-'),
                 positionSelector = '.' + position.join('.'),
                 positionClass = position.join(' ');
 
@@ -70,7 +68,13 @@
             }
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
-            this.$el = $('<div class="alert alert-dismissable alert-' + this.settings.type + ' ' + pluginName + '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[this.putTo]('.' + containerClass + positionSelector);
+            this.$el = $('<div class="alert alert-' + this.settings.type + ' ' + pluginName + '"><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[this.putTo]('.' + containerClass + positionSelector);
+
+            if (this.settings.dismissable === true) {
+                this.$el
+                    .addClass('alert-dismissable')
+                    .prepend('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
+            }
 
             // Exibe o .alert
             this.$el.animate({
@@ -96,6 +100,7 @@
     $.extend(BootstrapNotify.prototype, {
         /*
          * Default options
+         * @type {Object} defaults
          */
         defaults: {
             message: 'Helo!', // String: HTML
@@ -103,10 +108,12 @@
             position: 'bottom-center', // String: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
             icon: undefined, // String: name
             timeout: false,
-            animationDuration: 300 // Int: animation duration in miliseconds
+            animationDuration: 300, // Int: animation duration in miliseconds
+            dismissable: true
         },
         /*
          * Default icons
+         * @type {Object} icons
          */
         icons: {
             warning: 'exclamation-sign',
@@ -116,6 +123,7 @@
         },
         /*
          * Position Sinonymus
+         * @type {Object} positionSinonym
          */
         positionSinonym: {
             bottom: 'bottom-center',
@@ -127,6 +135,7 @@
         },
         /*
          * Position Supported
+         * @type {array} positionSupported
          */
         positionSupported: [
             'top-left',
@@ -136,7 +145,7 @@
             'bottom-right'
         ],
         /**
-         * @type {function} hide
+         * @type {method} hide
          * @param {int} timeout
          * @return {int} setTimeoutID The setTimeout ID.
          **/

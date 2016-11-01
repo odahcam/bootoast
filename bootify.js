@@ -22,7 +22,7 @@
     /*
      * The plugin constructor.
      */
-    function Plugin(options) {
+    function BootstrapNotify(options) {
 
         if (options !== undefined) {
 
@@ -93,7 +93,7 @@
         }
     };
 
-    $.extend(Plugin.prototype, {
+    $.extend(BootstrapNotify.prototype, {
         /*
          * Default options
          */
@@ -148,13 +148,12 @@
                 }, plugin.settings.animationDuration, function() {
                     plugin.$el.remove();
                 });
-            }, timeout);
+            }, timeout || 0);
         }
     });
 
     window[pluginName] = function(options) {
-        new Plugin(options);
-        return;
+        return new BootstrapNotify(options);
     };
 
 })(window.jQuery || false, window, document);

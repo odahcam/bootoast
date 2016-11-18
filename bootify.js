@@ -39,9 +39,7 @@
             this.content = this.settings.content || this.settings.text || this.settings.message;
 
             // Define uma posição suportada para o .alert
-            if (this.positionSupported[this.settings.position] !== undefined) {
-                this.settings.position = this.settings.position;
-            } else {
+            if (this.positionSupported[this.settings.position] === undefined) {
                 // Tenta encontrar um sinônimo
                 var positionCamel = $.camelCase(this.settings.position);
 

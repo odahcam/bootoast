@@ -7,7 +7,8 @@ Floating page push notifications with **Bootstrap 3**.
 
 ### Default options
 
-    {
+```javascript
+    bootify({
         message: 'Helo!',
         type: 'info',
         position: 'bottom-center',
@@ -15,7 +16,8 @@ Floating page push notifications with **Bootstrap 3**.
         timeout: false,
         animationDuration: 300,
         dismissable: true
-    }
+    });
+```
 
 #### Message
 
@@ -36,24 +38,14 @@ A raw string that can be any of Bootstrap 3 alert type classes without the `aler
 
 A raw string with two segments of align separated by hypehn: `vertical-horizontal`
 
-##### Position Sinonymus
-
- - `'bottom' === 'bottom-center'`
- - `'left-bottom' === 'bottom-left'`
- - `'right-bottom' === 'bottom-right'`
- - `'top' === 'top-center'`
- - `'right-top' === 'top-right'`
- - `'left-top' === 'top-left'`
-       
-##### Position Supported
-
-    [
-        'top-left',
-        'top-center',
-        'top-right',
-        'bottom-left',
-        'bottom-right'
-    ]
+Supported | Sinonymus
+:---: | :---:
+`top-center` | `top`
+`top-left` | `left-top`
+`top-right` | `right-top`
+`bottom-center` | `bottom`
+`bottom-left` | `left-bottom`
+`bottom-right` | `right-bottom`
 
 #### Icon
 

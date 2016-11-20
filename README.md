@@ -27,7 +27,7 @@ Option | Default Value | Descrition
 :--- | :--- | :---
 `message` | `'Helo!'` | Any, **any**, HTML String!
 `type` | `'info'` | A raw string that can be any of Bootstrap 3 alert type classes without the `alert-` preffix. [Available types](#types).
-`icon` | based on choosen `type` || `undefined` | An icon following the standard Bootstrap 3 glyphicons name without the `glyphicon-` preffix. [Icons choosen by type](#icon-defaults).
+`icon` | based on choosen `type` OR `undefined` | An icon following the standard Bootstrap 3 glyphicons name without the `glyphicon-` preffix. [Icons choosen by type](#icon-defaults).
 `position` | `'bottom-center'` | A raw string with two segments of align separated by hypehn follo0wing the pattern: `vertical-horizontal`. [Supported positions](#supported-positions).
 `timeout` | `false` | The time in seconds for hide the notification (`.alert` element). If `false` or `0`, the notification will not auto-hide. 
 `dismissable` | `true` | Shows or hides the dismiss &times; button. It can be `true` or `false`.

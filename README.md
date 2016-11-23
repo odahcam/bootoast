@@ -37,10 +37,10 @@ Option | Default Value | Descrition
 
 The alert types available, for styling:
 
- - info
- - success
- - warning
- - danger
+- info
+- success
+- warning
+- danger
  
  [See more about Bootsrap `alert`s](https://getbootstrap.com/components/#alerts).
 

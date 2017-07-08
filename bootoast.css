@@ -1,34 +1,34 @@
 /*!
- * Bootify CSS
+ * Bootoast CSS
  * @author odahcam
  * @version 1.0.0
  **/
 
-.bootify {
+.bootoast {
     opacity: 0;
     filter: alpha(opacity=0)
 }
 
-.bootify>.glyphicon {
+.bootoast>.glyphicon {
     display: inline-block;
     float: left;
     font-size: 20px;
     margin-right: 14px;
 }
 
-.bootify>.container-alert {
+.bootoast>.container-alert {
     display: block;
     max-width: 100%;
     overflow: auto;
 }
 
-.bootify>.container-alert>.content {
+.bootoast>.container-alert>.content {
     display: table;
     width: 100%;
     height: 100%
 }
 
-.container-bootify {
+.container-bootoast {
     position: fixed;
     left: 20px;
     right: 20px;
@@ -39,23 +39,23 @@
     z-index: 2060
 }
 
-.container-bootify.top {
+.container-bootoast.top {
     top: 20px
 }
 
-.container-bootify.bottom {
+.container-bootoast.bottom {
     bottom: 20px
 }
 
-.container-bootify.right {
+.container-bootoast.right {
     left: initial
 }
 
-.container-bootify.left {
+.container-bootoast.left {
     right: initial
 }
 
-.container-bootify.center {
+.container-bootoast.center {
     left: 50%;
     -webkit-transform: translateX(-50%);
        -moz-transform: translateX(-50%);

@@ -1,14 +1,14 @@
-# Bootify
-## A [*Boot*][0]strap 3 Not[*ify*][1]ing Plugin
-Floating page push notifications with **Bootstrap 3**.
+# Bootoast
+## A [*Boot*][0]strap 3 T[*oast*][1]er Plugin
+Toast messages / notifications with **Bootstrap 3**.
 
 [0]: getbootstrap.com.br
-[1]: github.com/odahcam/bootify
+[1]: github.com/odahcam/bootoast
 
 ### Default Settings
 
 ```javascript
-bootify({
+bootoast({
     message: 'Helo!',
     type: 'info',
     position: 'bottom-center',
@@ -70,4 +70,4 @@ By default, if it's not defined, it will turn into an icon choosen by the type:
 ```
 ----
 
-Good Luck.
+Good Luck. :-)

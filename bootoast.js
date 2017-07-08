@@ -17,7 +17,7 @@
      * Store the plugin name in a variable. It helps you if later decide to change the plugin's name
      * @type {string} pluginName
      **/
-    var pluginName = 'bootify';
+    var pluginName = 'bootoast';
 
     /*
      * The plugin constructor.

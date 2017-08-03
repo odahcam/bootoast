@@ -14,6 +14,9 @@
     }
     
     $.extend = $.extend || Object.assign;
+    $.camelCase = function camelCase(s) {
+        return s.replace(/-(.)/g, function(a, $1) { return $1.toUpperCase(); });
+    };
 
     /**
      * Store the plugin name in a variable. It helps you if later decide to change the plugin's name

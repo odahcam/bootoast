@@ -58,7 +58,7 @@
             // Define o .glyphicon com base no .alert-<type>
             this.settings.icon = this.settings.icon || this.icons[this.settings.type];
 
-            var containerClass = 'container-' + pluginName;
+            var containerClass = pluginName + '-container';
 
             // Checa se já tem container, se não cria um.
             if ($('body > .' + containerClass + positionSelector).length === 0) {
@@ -66,7 +66,7 @@
             }
 
             // Adiciona o .alert ao .container conforme seu posicionamento.
-            this.$el = $('<div class="alert alert-' + this.settings.type + ' ' + pluginName + '"><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="container-alert"><span class="content">' + this.content + '</span></span></div>')[this.putTo]('.' + containerClass + positionSelector);
+            this.$el = $('<div class="alert alert-' + this.settings.type + ' ' + pluginName + '"><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="bootoast-alert-container"><span class="bootoast-alert-content">' + this.content + '</span></span></div>')[this.putTo]('.' + containerClass + positionSelector);
 
             if (this.settings.dismissable === true) {
                 this.$el

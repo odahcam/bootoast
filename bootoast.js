@@ -12,6 +12,8 @@
         console.error("jQuery não encontrado, seu plugin jQuery não irá funcionar.");
         return false;
     }
+    
+    $.extend = $.extend || Object.assign;
 
     /**
      * Store the plugin name in a variable. It helps you if later decide to change the plugin's name

@@ -1,4 +1,4 @@
-# Bootoast
+# Bootoast 🔥
 ## A [*Boot*][0]strap 3 T[*oast*][1]er Plugin
 Toast messages / notifications with **Bootstrap 3**.
 

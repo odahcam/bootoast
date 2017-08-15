@@ -1,8 +1,8 @@
 # Bootoast 🔥
-## A [*Boot*](0)strap 3 T[*oast*](1)er Plugin
+## A [*Boot*][0]strap 3 T[*oast*][1]er Plugin
 Toast notifications with **Bootstrap 3** `alert`s.
 
-### [Demo!](3)
+### [Demo!][3]
 
 ### Default Settings
 
@@ -41,7 +41,7 @@ By default, Bootoast supports all [Bootstrap 3 alert types][2]:
 * warning
 * danger
  
- [See more about Bootsrap `alert`s](2).
+ [See more about Bootsrap `alert`s][2].
  
 
 

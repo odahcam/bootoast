@@ -1,11 +1,8 @@
 # Bootoast 🔥
-## A [*Boot*][0]strap 3 T[*oast*][1]er Plugin
-Toast messages / notifications with **Bootstrap 3**.
+## A [*Boot*](0)strap 3 T[*oast*](1)er Plugin
+Toast notifications with **Bootstrap 3** `alert`s.
 
-[0]: getbootstrap.com.br
-[1]: github.com/odahcam/bootoast
-
-### [Demo!](https://codepen.io/odahcam/full/oeoYxm)
+### [Demo!](3)
 
 ### Default Settings
 
@@ -35,16 +32,17 @@ Option | Default Value | Descrition
 `dismissable` | `true` | Shows or hides the dismiss &times; button. It can be `true` or `false`.
 `animationDuration` | `300` | The notification hide animation duration in milliseconds (`ms`).
 
-#### Types
+#### Supported Types
 
-The alert types available, for styling:
+By default, Bootoast supports all [Bootstrap 3 alert types][2]:
 
-- info
-- success
-- warning
-- danger
+* info
+* success
+* warning
+* danger
  
- [See more about Bootsrap `alert`s](https://getbootstrap.com/components/#alerts).
+ [See more about Bootsrap `alert`s](2).
+ 
 
 
 #### Supported Positions
@@ -58,18 +56,24 @@ Supported | Sinonymus
 `bottom-left` | `left-bottom`
 `bottom-right` | `right-bottom`
 
+
 #### Icon Defaults
 
 By default, if it's not defined, it will turn into an icon choosen by the type:
 
-```javascript
-{
-    warning: 'exclamation-sign',
-    success: 'ok-sign',
-    danger: 'remove-sign',
-    info: 'info-sign'
-}
-```
+Bootoast type | Bootstrap icon
+:---: | :---:
+warning | exclamation-sign
+success | ok-sign
+danger | remove-sign
+info | info-sign
+
 ----
 
 Good Luck. :-)
+
+
+[0]: https://getbootstrap.com/docs/3.3/
+[1]: github.com/odahcam/bootoast
+[2]: https://getbootstrap.com/docs/3.3/components/#alerts
+[3]: https://codepen.io/odahcam/full/oeoYxm

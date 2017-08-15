@@ -5,6 +5,8 @@ Toast messages / notifications with **Bootstrap 3**.
 [0]: getbootstrap.com.br
 [1]: github.com/odahcam/bootoast
 
+### [Demo!](https://codepen.io/odahcam/full/oeoYxm)
+
 ### Default Settings
 
 ```javascript

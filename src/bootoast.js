@@ -37,13 +37,13 @@
 
 	}
 
-}(this, function(exports, $) {
+}(this, function(exports, $, undefined) {
 	// Use bootoast, bootbox in some fashion.
 
-	"use strict";
+	'use strict';
 
 	if (!$) {
-		console.error("jQuery não encontrado, seu plugin jQuery não irá funcionar.");
+		console.error('jQuery não encontrado, seu plugin jQuery não irá funcionar.');
 		return false;
 	}
 
@@ -150,7 +150,7 @@
 			type: 'info', // String: ['warning', 'success', 'danger', 'info']
 			position: 'bottom-center', // String: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
 			icon: undefined, // String: name
-			timeout: false,
+			timeout: 3, // seconds, use null to disable timeout hidin'
             timeoutProgress: false, // [false, 'top', 'bottom', 'background']
 			animationDuration: 300, // Int: animation duration in miliseconds
 			dismissable: true,
@@ -238,7 +238,7 @@
 
 	// attach properties to the exports object to define
 	// the exported module properties.
-	exports = function(options) {
+	exports.toast = function(options) {
 		return new Bootoast(options);
 	};;
 

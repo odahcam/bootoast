@@ -120,7 +120,7 @@
 			}, this.settings.animationDuration);
 
 			// Se o .alert tem tempo de expiração
-			if (this.settings.timeout !== false) {
+			if (!!this.settings.timeout) {
 				var secondsTimeout = parseInt(this.settings.timeout * 1000),
 					timer = this.hide(secondsTimeout),
 					plugin = this;

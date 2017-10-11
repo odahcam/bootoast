@@ -104,9 +104,9 @@
 
             var plugin = this;
 
-			if (this.settings.dismissable === true) {
+			if (this.settings.dismissible === true) {
 				this.$el
-                    .addClass('alert-dismissable')
+                    .addClass('alert-dismissible')
 					.prepend('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>')
                     .on('click', 'button.close', function (e) {
                         e.preventDefault();
@@ -153,7 +153,7 @@
 			timeout: 3, // seconds, use null to disable timeout hidin'
             timeoutProgress: false, // [false, 'top', 'bottom', 'background']
 			animationDuration: 300, // Int: animation duration in miliseconds
-			dismissable: true,
+			dismissible: true,
 		},
 		/*
 		 * Default icons

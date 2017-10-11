@@ -1,5 +1,5 @@
 # Bootoast 🔥
-## A [*Boot*][0]strap 3 T[*oast*][1]er Plugin
+## A [*Boot*][0]strap T[*oast*][1]er Plugin
 Toast notifications with **Bootstrap 3** `alert`s.
 
 ### [Demo!][3]

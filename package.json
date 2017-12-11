@@ -1,5 +1,8 @@
 {
     "url": "https://github.com/odahcam/bootoast",
+    "repository": {
+        "url": "https://github.com/odahcam/bootoast/"
+    },
     "name": "bootoast",
     "version": "1.0.1-beta.2",
     "author": "machado@odahcam.com"

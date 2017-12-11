@@ -8,11 +8,11 @@ Toast notifications with **Bootstrap 3 or 4** `alert`s.
 
 ```javascript
 bootoast({
-    message: 'Helo!',
+    message: 'Bootoast!',
     type: 'info',
     position: 'bottom-center',
-    icon: undefined,
-    timeout: false,
+    icon: null,
+    timeout: null,
     animationDuration: 300,
     dismissible: true
 });

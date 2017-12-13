@@ -2,6 +2,15 @@
 ## A [*Boot*][0]strap T[*oast*][1]er Plugin
 Toast notifications with **Bootstrap 3 or 4** `alert`s.
 
+[![GitHub version](https://img.shields.io/github/tag/odahcam/bootoast.svg?style=flat-square&label=github)](https://github.com/odahcam/bootoast)
+[![NPM version](https://img.shields.io/npm/v/bootoast.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/bootoast)
+[![License](https://img.shields.io/npm/l/qoopido.demand.svg?style=flat-square)](https://github.com/odahcam/bootoast)
+[![Code Climate](https://img.shields.io/codeclimate/github/odahcam/bootoast.svg?style=flat-square)](https://codeclimate.com/github/odahcam/bootoast)
+![NPM downloads](https://img.shields.io/npm/dt/bootoast.svg?style=flat-square&label=npm%20downloads)
+
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Percentage of issues still open")
+
 ### [Demo!][3]
 
 ### Default Settings

@@ -1,6 +1,7 @@
 {
     "url": "https://github.com/odahcam/bootoast",
     "repository": {
+        "type": "git",
         "url": "https://github.com/odahcam/bootoast/"
     },
     "name": "bootoast",

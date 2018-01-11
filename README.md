@@ -76,6 +76,11 @@ success | ok-sign
 danger | remove-sign
 info | info-sign
 
+
+### Versioning
+
+Closest as possible to semver (Semantic Versioning).
+
 ----
 
 Good Luck. :-)

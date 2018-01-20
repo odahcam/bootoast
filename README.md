@@ -1,3 +1,4 @@
+
 [![NPM version](https://img.shields.io/npm/v/bootoast.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/bootoast)
 ![NPM downloads](https://img.shields.io/npm/dt/bootoast.svg?style=flat-square&label=npm%20downloads)
 [![License](https://img.shields.io/npm/l/qoopido.demand.svg?style=flat-square)](https://github.com/odahcam/bootoast)
@@ -6,6 +7,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2ebe930bdb2803dbfdbb/maintainability)](https://codeclimate.com/github/odahcam/bootoast/maintainability)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Percentage of issues still open")
+
 
 # Bootoast 🔥
 

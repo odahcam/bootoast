@@ -14,10 +14,10 @@
 > Make your toast notifications with **Bootstrap 3 or 4** `alert`s.
 
 
-### [Demo!][3]
+## [Demo!][3]
 
 
-### Default Settings
+## Default Settings
 
 ```javascript
 bootoast({
@@ -31,7 +31,7 @@ bootoast({
 });
 ```
 
-### Options Settings
+## Options Settings
 
 To use your own settings, take the default example above and replace with your values. You can also remove the keys you will not change.
 
@@ -45,7 +45,7 @@ Option | Default Value | Descrition
 `dismissible` | `true` | Shows or hides the dismiss &times; button. It can be `true` or `false`.
 `animationDuration` | `300` | The notification hide animation duration in milliseconds (`ms`).
 
-#### Supported Types
+### Supported Types
 
 By default, Bootoast supports all [Bootstrap 3 alert types][2]:
 
@@ -58,7 +58,7 @@ By default, Bootoast supports all [Bootstrap 3 alert types][2]:
  
 
 
-#### Supported Positions
+### Supported Positions
 
 Supported | Sinonymus
 :---: | :---:
@@ -70,7 +70,7 @@ Supported | Sinonymus
 `bottom-right` | `right-bottom`
 
 
-#### Icon Defaults
+### Icon Defaults
 
 By default, if it's not defined, it will turn into an icon choosen by the type:
 
@@ -82,7 +82,7 @@ danger | remove-sign
 info | info-sign
 
 
-### Versioning
+## Versioning
 
 Closest as possible to semver (Semantic Versioning).
 

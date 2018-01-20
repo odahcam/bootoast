@@ -1,16 +1,21 @@
-# Bootoast 🔥
-## A [*Boot*][0]strap T[*oast*][1]er Plugin
-Toast notifications with **Bootstrap 3 or 4** `alert`s.
-
 [![NPM version](https://img.shields.io/npm/v/bootoast.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/bootoast)
 ![NPM downloads](https://img.shields.io/npm/dt/bootoast.svg?style=flat-square&label=npm%20downloads)
 [![License](https://img.shields.io/npm/l/qoopido.demand.svg?style=flat-square)](https://github.com/odahcam/bootoast)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/884fb7b79aa446acaa60b1ff22e5429a)](https://www.codacy.com/app/odahcam/bootoast?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=odahcam/bootoast&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2ebe930bdb2803dbfdbb/maintainability)](https://codeclimate.com/github/odahcam/bootoast/maintainability)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Percentage of issues still open")
 
+# Bootoast 🔥
+
+> A [*Boot*][0]strap T[*oast*][1]er library.
+> 
+> Make your toast notifications with **Bootstrap 3 or 4** `alert`s.
+
+
 ### [Demo!][3]
+
 
 ### Default Settings
 

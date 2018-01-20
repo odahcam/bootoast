@@ -1,22 +1,10 @@
-﻿// Uses CommonJS, AMD or browser globals to create a module. This example
-// creates a global even when AMD is used. This is useful if you have some
-// scripts that are loaded by an AMD loader, but they still want access to
-// globals. If you do not need to export a global for the AMD case, see
-// commonjsStrict.js.
-
-// If you just want to support Node, or other CommonJS-like environments that
-// support module.exports, and you are not creating a module that has a
-// circular dependency, then see returnExportsGlobal.js instead. It will allow
-// you to export a function as the module value.
-
-// Defines a module "bootoast" that depends another module called
-// "b". Note that the name of the module is implied by the file name. It is
-// best if the file name and the exported global have matching names.
-
-// If the 'b' module also uses this type of boilerplate, then
-// in the browser, it will create a global .b that is used below.
-
-;
+﻿/**
+ * AMD adapter!
+ * 
+ * @see https://github.com/umdjs/umd
+ * 
+ * @author Luiz Machado <https://github.com/odahcam>
+ */
 (function (root, factory) {
 
 	if (typeof define === 'function' && define.amd) {
@@ -38,7 +26,7 @@
 
 	}
 
-}(this, function (exports, $, undefined) {
+}(this, function (exports, $) {
 	// Use bootoast, bootbox in some fashion.
 
 	'use strict';
@@ -59,13 +47,13 @@
 	 */
 	function Bootoast(options) {
 
-		if (typeof options === 'undefined') return;
-
 		if (typeof options === 'string') {
 			options = {
 				message: options
 			};
 		}
+
+		if (typeof options !== 'object') return;
 
 		// define as opções interpretadas
 		this.settings = $.extend({}, this.defaults, options);
@@ -120,7 +108,7 @@
 			/**
 			 * @var {string}
 			 */
-			icon: undefined,
+			icon: null,
 			/**
 			 * Seconds, use null to disable timeout hiding.
 			 * @var {int}
@@ -208,7 +196,7 @@
 		init: function () {
 
 			// Define se o novo .alert deve ser inserido por primeiro ou último no container.
-			this.$el[(this.position[0] == 'bottom' ? 'append' : 'prepend') + 'To'](this.containerSelector);
+			this.$el[(this.position[0] === 'bottom' ? 'append' : 'prepend') + 'To'](this.containerSelector);
 
 			var plugin = this;
 
@@ -228,7 +216,7 @@
 			}, this.settings.animationDuration);
 
 			// Se o .alert tem tempo de expiração
-			if (!!this.settings.timeout) {
+			if (this.settings.timeout) {
 
 				var secondsTimeout = parseInt(this.settings.timeout * 1000);
 
@@ -249,7 +237,7 @@
 				this.setTimeoutProgress(this.settings.timeoutProgress);
 			}
 
-			var timer = setTimeout(function () {
+			var timerId = setTimeout(function () {
 				plugin.$el.animate({
 					opacity: 0,
 				}, plugin.settings.animationDuration, function () {
@@ -259,14 +247,18 @@
 
 			// Pausa o timeout baseado no hover
 			this.$el.hover(
-				clearTimeout.bind(window, timer),
+				clearTimeout.bind(window, timerId),
 				function () {
-					timer = plugin.hide(timeout);
+					timerId = plugin.hide(timeout);
 				}
 			);
+
+			return timerId;
 		},
 		/**
 		 * @param {string} progressPosition
+		 * 
+		 * @return {number}
 		 */
 		setTimeoutProgress: function (progressPosition) {
 
@@ -300,50 +292,63 @@
 		/**
 		 * @param {string} type
 		 *
-		 * @return Gets the correct type-name for the given value or null.
+		 * @return {string} Gets the correct type-name for the given value or null.
 		 */
 		typeFor: function (type) {
 
 			// se esta type é padrão
-			if (this.types[type] !== undefined) return type;
+			if (this.types[type]) {
+				return type;
+			}
 
-			if (!type) return 'default';
+			if (!type) {
+				return 'default';
+			}
 
-			return this.typeSinonym[type] || type;
+			var sinonym = this.typeSinonym[type];
+
+			return sinonym || type;
 		},
 		/**
 		 * @param {string} position
 		 *
-		 * @return Gets the correct position-name for the given value or ''.
+		 * @return {string} The correct position-name for the given value or ''.
 		 */
 		positionFor: function (position) {
 
 			// se esta posição é padrão
-			if (this.positions[position] !== undefined) return position;
+			if (this.positions[position]) return position;
 
 			var positionCamel = $.camelCase(position);
 
 			// Tenta encontrar um sinônimo
 			return this.positionSinonym[positionCamel] || 'bottom-center';
 		},
-	});
 
-	/**
-	 *
-	 * @param {HTMLElement} elem
-	 * @param {int} qty
-	 */
-	function moveProgressbar(elem, qty) {
-		var width = 100;
-		return setInterval(function () {
-			if (width <= 0) {
-				clearInterval(id);
-			} else {
-				width--;
-				elem.style.width = width + '%';
-			}
-		}, 100 / qty);
-	}
+		/**
+		 *
+		 * @param {HTMLElement} elem
+		 * @param {int} qty
+		 * 
+		 * @return {int} The interval ID, so you can cancel the movement bro.
+		 */
+		moveProgressbar: function(elem, qty) {
+
+			var that = this;
+			var width = 100;
+			
+			var id = setInterval(function () {
+				if (width <= 0) {
+					clearInterval(id);
+				} else {
+					width--;
+					elem.style.width = width + '%';
+				}
+			}, 100 / qty);
+
+			return id;
+		}
+	});
 
 	// attach properties to the exports object to define
 	// the exported module properties.

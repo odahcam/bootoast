@@ -5,8 +5,6 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/884fb7b79aa446acaa60b1ff22e5429a)](https://www.codacy.com/app/odahcam/bootoast?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=odahcam/bootoast&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2ebe930bdb2803dbfdbb/maintainability)](https://codeclimate.com/github/odahcam/bootoast/maintainability)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/odahcam/bootoast.svg)](http://isitmaintained.com/project/odahcam/bootoast "Percentage of issues still open")
 
 
 # Bootoast 🔥
@@ -22,7 +20,7 @@
 ## Default Settings
 
 ```javascript
-bootoast({
+bootoast.toast({
     message: 'Bootoast!',
     type: 'info',
     position: 'bottom-center',

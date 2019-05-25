@@ -317,7 +317,7 @@
 		positionFor: function (position) {
 
 			// se esta posição é padrão
-			if (this.positions[position]) return position;
+			if (this.positions.indexOf(position)) return position;
 
 			var positionCamel = $.camelCase(position);
 

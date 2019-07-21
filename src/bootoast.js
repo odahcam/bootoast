@@ -183,12 +183,19 @@
 		 * @var {Object} positionSinonym
 		 */
 		positionSinonym: {
-			bottom: 'bottom-center',
-			leftBottom: 'bottom-left',
-			rightBottom: 'bottom-right',
-			top: 'top-center',
-			rightTop: 'top-right',
-			leftTop: 'top-left'
+			// bottom: 'bottom-center',
+			// leftBottom: 'bottom-left',
+			// rightBottom: 'bottom-right',
+			// top: 'top-center',
+			// rightTop: 'top-right',
+			// leftTop: 'top-left'
+			bottomCenter: 'bottom-center',
+			bottomLeft: 'bottom-left',
+			bottomRight: 'bottom-right',
+			topCenter: 'top-center',
+			topRight: 'top-right',
+			topLeft: 'top-left'
+			
 		},
 		/**
 		 * Initializes the plugin functionality

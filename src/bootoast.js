@@ -322,7 +322,7 @@
 			var positionCamel = $.camelCase(position);
 
 			// Tenta encontrar um sinônimo
-			return this.positionSinonym[positionCamel] || 'bottom-center';
+			return this.positionSinonym.indexOf(positionCamel) || 'bottom-center';
 		},
 
 		/**

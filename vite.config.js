@@ -3,12 +3,15 @@ import { defineConfig } from "vite";
 export default defineConfig({
   build: {
     outDir: "./dist",
+    lib: {
+      entry: './src/bootoast.js', // Path to your entry file
+      name: 'Bootoast', // The name of your global variable
+      fileName: (format) => `bootoast.min.js`
+    },
     rollupOptions: {
-      input: {
-        bootoast: "./src/bootoast.js", // Specify your input JS file
-      },
       output: {
-        entryFileNames: "[name].min.js", // Output as bootoast.js
+        format: 'umd', // UMD format
+        // Additional output options here
         // Note: For CSS, it will still output as [name].[hash].css
         assetFileNames: "bootoast.min.css", // This will not change the CSS file name as expected
       },

@@ -17,6 +17,69 @@ if (!$) {
 var pluginName = 'bootoast';
 
 /**
+ * Types
+ */
+const types = [
+	'primary',
+	'secondary',
+	'info',
+	'success',
+	'warning',
+	'danger'
+];
+
+/**
+ * Type Sinonymus
+ */
+const typeSinonym = {
+	warn: 'warning',
+	error: 'danger',
+};
+
+/**
+ * Default icons
+ */
+const icons = {
+	warning: 'exclamation-sign',
+	success: 'ok-sign',
+	danger: 'remove-sign',
+	info: 'info-sign'
+};
+
+/**
+ * @param {string} type
+ *
+ * @return {string} Gets the correct type-name for the given value or null.
+ */
+function typeFor(type) {
+
+	// se esta type é padrão
+	if (types[type]) {
+		return type;
+	}
+
+	if (!type) {
+		return 'default';
+	}
+
+	var sinonym = typeSinonym[type];
+
+	if (!sinonym) {
+		console.warn('Bootoast: type "' + type + '" não é um tipo válido.');
+		sinonym = type;
+	}
+
+	return sinonym;
+}
+
+/** Creates an HTML string template for the Bootstrap alert. */
+function createAlertTemplate(content, type, icon = null) {
+	const typeClass = typeFor(type);
+	const iconClass = icon || icons[typeClass];
+	return `<div class="${pluginName} alert alert-${typeClass}"><span class="glyphicon glyphicon-${iconClass}"></span><span class="bootoast-alert-container"><span class="bootoast-alert-content">${content}</span></span></div>`;
+}
+
+/**
  * The plugin constructor.
  */
 function Bootoast(options) {
@@ -38,7 +101,7 @@ function Bootoast(options) {
 	// define uma posição aceitável pro elemento
 	this.position = this.positionFor(this.settings.position).split('-');
 	// Define o .glyphicon com base no .alert-<type>
-	this.settings.icon = this.settings.icon || this.icons[this.settings.type];
+	this.settings.icon = this.settings.icon || icons[this.settings.type];
 
 	var containerClass = pluginName + '-container';
 
@@ -52,7 +115,7 @@ function Bootoast(options) {
 	}
 
 	// Adiciona o .alert ao .container conforme seu posicionamento.
-	this.$el = $('<div class="' + pluginName + ' alert alert-' + this.typeFor(this.settings.type) + '"><span class="glyphicon glyphicon-' + this.settings.icon + '"></span><span class="bootoast-alert-container"><span class="bootoast-alert-content">' + this.content + '</span></span></div>');
+	this.$el = $(createAlertTemplate(this.settings.type, this.settings.icon, this.content));
 
 	this.init();
 }
@@ -106,39 +169,6 @@ $.extend(Bootoast.prototype, {
 		dismissible: true,
 		/** Whether the plugin should instantly show the toast. */
 		instant: true,
-	},
-	/**
-	 * Default icons
-	 *
-	 * @var {Object} icons
-	 */
-	icons: {
-		warning: 'exclamation-sign',
-		success: 'ok-sign',
-		danger: 'remove-sign',
-		info: 'info-sign'
-	},
-	/**
-	 * Types
-	 *
-	 * @var {Object} types
-	 */
-	types: [
-		'primary',
-		'secondary',
-		'info',
-		'success',
-		'warning',
-		'danger'
-	],
-	/**
-	 * Type Sinonymus
-	 *
-	 * @var {Object} typeSinonym
-	 */
-	typeSinonym: {
-		warn: 'warning',
-		error: 'danger',
 	},
 	/**
 	 * Position Supported
@@ -270,26 +300,6 @@ $.extend(Bootoast.prototype, {
 		return this.timeoutProgress;
 	},
 	/**
-	 * @param {string} type
-	 *
-	 * @return {string} Gets the correct type-name for the given value or null.
-	 */
-	typeFor: function (type) {
-
-		// se esta type é padrão
-		if (this.types[type]) {
-			return type;
-		}
-
-		if (!type) {
-			return 'default';
-		}
-
-		var sinonym = this.typeSinonym[type];
-
-		return sinonym || type;
-	},
-	/**
 	 * @param {string} position
 	 *
 	 * @return {string} The correct position-name for the given value or ''.
@@ -334,4 +344,4 @@ const toast = function (options) {
 	return new Bootoast(options);
 };
 
-export { toast };
+export { toast, createAlertTemplate };

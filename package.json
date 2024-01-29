@@ -7,5 +7,16 @@
     "bugs": "https://github.com/odahcam/bootoast/issues/new",
     "name": "bootoast",
     "version": "1.0.1",
-    "author": "machado@odahcam.com"
+    "author": "machado@odahcam.com",
+    "main": "./dist/bootoast.min.js",
+    "scripts": {
+      "build": "vite build"
+    },
+    "devDependencies": {
+        "sass": "^1.70.0",
+        "vite": "^5.0.12"
+    },
+    "engines": {
+        "node": ">=18.0"
+    }
 }

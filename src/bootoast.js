@@ -115,7 +115,7 @@ function Bootoast(options) {
 	}
 
 	// Adss the .alert to the .container according to it's position.
-	this.$el = $(createAlertTemplate(this.settings.type, this.settings.icon, this.content));
+	this.$el = $(createAlertTemplate(this.content, this.settings.type, this.settings.icon));
 
 	this.init();
 }
@@ -327,11 +327,9 @@ $.extend(Bootoast.prototype, {
 	 * @return {int} The interval ID, so you can cancel the movement bro.
 	 */
 	moveProgressbar: function(elem, qty) {
-
-		var that = this;
 		var width = 100;
 		
-		var id = setInterval(function () {
+		var id = setInterval(() => {
 			if (width <= 0) {
 				clearInterval(id);
 			} else {

@@ -306,12 +306,16 @@ $.extend(Bootoast.prototype, {
 	 */
 	positionFor: function (position) {
 
-		// is this a default position?
-		if (this.positions[position]) return position;
+		// looks for a registered default position
+		for (var i = 0; i < this.positions.length; i++) {
+			// if this is a known position
+			if (this.positions[i] === position) return position;	
+		}
 
+		// alias are in camelCase.
 		var positionCamel = $.camelCase(position);
 
-		// finds a sinonym, if any
+		// tries to find some position-name alias.
 		return this.positionSinonym[positionCamel] || 'bottom-center';
 	},
 

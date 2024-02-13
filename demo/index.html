@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootoast Demo</title>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.css?v=1.0.1">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.js?v=1.0.1"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🔥</h1>
+        <h2><a href="https://github.com/odahcam/bootoast" target="_blank">Boo<b>toast</b></a> generator</h2>
+
+        <form name="bootoastGenerator" action="#">
+
+            <div class="form-group">
+                <label>Position</label>
+
+                <select name="position" class="form-control">
+                
+                    <optgroup label="Top">
+                        <option>top-left</option>         
+                        <option>top-center</option>
+                        <option>top-right</option>
+                    </optgroup>
+
+                    <optgroup label="Bottom">
+                        <option>bottom-left</option>         
+                        <option>bottom-center</option>
+                        <option selected>bottom-right</option>
+                    </optgroup>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Icon</label>
+                <select name="icon" class="form-control">
+                    <option value="">auto</option>
+                    <option>asterisk</option>
+                    <option>music</option>
+                    <option>heart</option>
+                    <option>user</option>
+                    <option>cog</option>
+                    <option>map-marker</option>
+                    <option>screenshot</option>
+                    <option>remove-circle</option>
+                    <option>ok-circle</option>
+                    <option>ban-circle</option>
+                </select>
+                <p class="help-block">Not all the Bootstrap icons are here, but you can still use them via code.</p>
+            </div>
+
+            <div class="form-group">
+                <label>Timeout (sec)</label>
+                <input type="number" step="0.5" name="timeout" class="form-control" value="2.5">
+            </div>
+
+            <div class="form-group">
+                <label>Type</label>
+                <select name="type" class="form-control">
+                    <option>success</option>
+                    <option>info</option>
+                    <option>warning</option>
+                    <option>danger</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Animation Duration (ms)</label>
+                <input type="number" step="50" name="animationDuration" class="form-control" value="300">
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" class="form-control" rows="4">
+    &lt;p&gt;Comme on babe! Play with some HTML!&lt;/p&gt;
+                    
+    &lt;button type="button" class="btn btn-sm btn-info" onclick="alert('TOASTED!')"&gt;🔥&lt;/button&gt;
+                </textarea>
+                <p class="help-block">You can place here any HTML you want! Buttons are cool.</p>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="dismissable"> Dismissable</label>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Toast 🔥</button>
+
+        </form>
+
+        <h3>Get your code!</h3>
+
+        <pre class="dark"><code id="bootoast-generated-code"></code></pre>
+
+    </div>
+
+    <script>
+    "use strict";
+
+    /*
+    * This example custom scripts.
+    */
+    function generateToast(e) {
+        e.preventDefault();
+
+        var form = e.target;
+        // var formData = new FormData(form);
+
+        var options = {
+            message: form.message.value,
+            type: form.type.value || "success",
+            position: form.position.value,
+            icon: form.icon.value,
+            // timeout: form.timeout.value || false,
+            // timeoutProgress: 'bottom',
+            animationDuration: form.animationDuration.value,
+            dismissable: form.dismissable.checked
+        };
+
+        bootoast.toast(options);
+        
+        options.message = options.message.replace(/\>\s+\</g, '><').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\n/g, '').trim();
+
+        document.getElementById("bootoast-generated-code").innerHTML =
+            "bootoast.toast(" + JSON.stringify(options, null, 4) + ");";
+
+        /*
+        * Bootstrap's close plugin polyfill.
+        */
+        $(".close").on("click", e => {
+            e.preventDefault();
+            $(e.target).parent().fadeOut();
+        });
+    }
+
+    bootoastGenerator.onsubmit = generateToast;
+    </script>
+
+    <style>
+        pre.dark {
+            background-color: #333;
+            color: #fff;
+        }
+
+        pre code {
+            white-space: pre
+        }
+
+        .alert.bootoast .bootoast-timeout-progress {
+            margin: -15px;
+            height: 4px;
+            display: block;
+            position: relative;
+        }
+
+        .alert.bootoast>.bootoast-timeout-progress:last-child {
+            margin-top: 15px;
+        }
+
+        .alert.bootoast>.bootoast-timeout-progress:first-child {
+            margin-bottom: 15px;
+        }
+    </style>
+
+</body>
+</html>

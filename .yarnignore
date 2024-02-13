@@ -1,0 +1,5 @@
+*.tgz
+src/
+node_modules/
+package/
+vite.config.js

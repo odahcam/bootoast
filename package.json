@@ -6,7 +6,7 @@
     },
     "bugs": "https://github.com/odahcam/bootoast/issues/new",
     "name": "bootoast",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "author": "machado@odahcam.com",
     "main": "./dist/bootoast.min.js",
     "scripts": {

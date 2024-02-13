@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootoast Demo</title>
 
-
-    <link rel="stylesheet" href="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.css?v=1.0.1">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/bootoast.min.css">
 
     <script src="https://unpkg.com/jquery"></script>
-    <script src="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.js?v=1.0.1"></script>
 </head>
 <body>
 
@@ -95,7 +93,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" type="submit">Toast 🔥</button>
+            <button class="btn btn-primary" type="submit" disabled>Toast 🔥</button>
 
         </form>
 
@@ -105,46 +103,51 @@
 
     </div>
 
-    <script>
-    "use strict";
+    <script src="/dist/bootoast.min.js"></script>
+    <script type="module">
+        "use strict";
 
-    /*
-    * This example custom scripts.
-    */
-    function generateToast(e) {
-        e.preventDefault();
-
-        var form = e.target;
-        // var formData = new FormData(form);
-
-        var options = {
-            message: form.message.value,
-            type: form.type.value || "success",
-            position: form.position.value,
-            icon: form.icon.value,
-            // timeout: form.timeout.value || false,
-            // timeoutProgress: 'bottom',
-            animationDuration: form.animationDuration.value,
-            dismissable: form.dismissable.checked
-        };
-
-        bootoast.toast(options);
-        
-        options.message = options.message.replace(/\>\s+\</g, '><').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\n/g, '').trim();
-
-        document.getElementById("bootoast-generated-code").innerHTML =
-            "bootoast.toast(" + JSON.stringify(options, null, 4) + ");";
+        const bootoast = window.Bootoast;
 
         /*
-        * Bootstrap's close plugin polyfill.
+        * This example custom scripts.
         */
-        $(".close").on("click", e => {
+        function generateToast(e) {
             e.preventDefault();
-            $(e.target).parent().fadeOut();
-        });
-    }
 
-    bootoastGenerator.onsubmit = generateToast;
+            var form = e.target;
+            // var formData = new FormData(form);
+
+            var options = {
+                message: form.message.value,
+                type: form.type.value || "success",
+                position: form.position.value,
+                icon: form.icon.value,
+                timeout: form.timeout.value || false,
+                // timeoutProgress: 'bottom',
+                animationDuration: form.animationDuration.value,
+                dismissable: form.dismissable.checked
+            };
+
+            bootoast.toast(options);
+            
+            options.message = options.message.replace(/\>\s+\</g, '><').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\n/g, '').trim();
+
+            document.getElementById("bootoast-generated-code").innerHTML =
+                "bootoast.toast(" + JSON.stringify(options, null, 4) + ");";
+
+            /*
+            * Bootstrap's close plugin polyfill.
+            */
+            $(".close").on("click", e => {
+                e.preventDefault();
+                $(e.target).parent().fadeOut();
+            });
+        }
+
+        bootoastGenerator.onsubmit = generateToast;
+
+        bootoastGenerator.querySelector("button[type=submit]").removeAttribute("disabled");
     </script>
 
     <style>

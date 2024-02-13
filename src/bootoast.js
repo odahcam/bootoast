@@ -7,7 +7,7 @@
 const $ = window.jQuery;
 
 if (!$) {
-	throw new Error('jQuery não encontrado, seu plugin jQuery não irá funcionar.');
+	throw new Error('jQuery not found, Bootoast won\'t work.');
 }
 
 /**
@@ -65,7 +65,7 @@ function typeFor(type) {
 	var sinonym = typeSinonym[type];
 
 	if (!sinonym) {
-		console.warn('Bootoast: type "' + type + '" não é um tipo válido.');
+		console.warn('Bootoast: type "' + type + '" is not valid.');
 		sinonym = type;
 	}
 
@@ -92,29 +92,29 @@ function Bootoast(options) {
 
 	if (typeof options !== 'object') return;
 
-	// define as opções interpretadas
+	// defines the interpreted options
 	this.settings = $.extend({}, this.defaults, options);
-	// define o conteúdo
+	// defines the content
 	this.content = this.settings.content || this.settings.text || this.settings.message;
-	// define o elemento de progress como nulo
+	// defines the progress bar element as null
 	this.timeoutProgress = null;
-	// define uma posição aceitável pro elemento
+	// defines the initial position
 	this.position = this.positionFor(this.settings.position).split('-');
-	// Define o .glyphicon com base no .alert-<type>
+	// Defines the .glyphicon based on .alert-<type>
 	this.settings.icon = this.settings.icon || icons[this.settings.type];
 
 	var containerClass = pluginName + '-container';
 
 	this.containerSelector = '.' + containerClass + '.' + this.position.join('.');
 
-	// Checa se já tem container, se não cria um.
+	// Looks for a container or creates a new one.
 	if ($('body > ' + this.containerSelector).length === 0) {
 		$('<div>', {
 			class: containerClass + ' ' + this.position.join(' ')
 		}).appendTo('body');
 	}
 
-	// Adiciona o .alert ao .container conforme seu posicionamento.
+	// Adss the .alert to the .container according to it's position.
 	this.$el = $(createAlertTemplate(this.settings.type, this.settings.icon, this.content));
 
 	this.init();
@@ -201,7 +201,7 @@ $.extend(Bootoast.prototype, {
 	 */
 	init: function () {
 
-		// Define se o novo .alert deve ser inserido por primeiro ou último no container.
+		// Defines if the new .alert should be add as first or last element in the container.
 		this.$el[(this.position[0] === 'bottom' ? 'append' : 'prepend') + 'To'](this.containerSelector);
 
 		var plugin = this;
@@ -220,12 +220,12 @@ $.extend(Bootoast.prototype, {
 			return;
 		}
 
-		// Exibe o .alert
+		// Shows the .alert
 		this.$el.animate({
 			opacity: 1,
 		}, this.settings.animationDuration);
 
-		// Se o .alert tem tempo de expiração
+		// If the .alert has a timeout
 		if (this.settings.timeout) {
 
 			var secondsTimeout = parseInt(this.settings.timeout * 1000);
@@ -255,7 +255,7 @@ $.extend(Bootoast.prototype, {
 			});
 		}, timeout || 0);
 
-		// Pausa o timeout baseado no hover
+		// Pauses the timeout on mouse hover
 		this.$el.hover(
 			clearTimeout.bind(window, timerId),
 			function () {
@@ -306,12 +306,12 @@ $.extend(Bootoast.prototype, {
 	 */
 	positionFor: function (position) {
 
-		// se esta posição é padrão
+		// is this a default position?
 		if (this.positions[position]) return position;
 
 		var positionCamel = $.camelCase(position);
 
-		// Tenta encontrar um sinônimo
+		// finds a sinonym, if any
 		return this.positionSinonym[positionCamel] || 'bottom-center';
 	},
 
